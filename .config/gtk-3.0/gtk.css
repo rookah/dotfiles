@@ -1,0 +1,6 @@
+* {
+    -GtkWindow-resize-grip-default: false;
+}
+
+.tr-workarea .overshoot,
+.tr-workarea .undershoot { border: none; }

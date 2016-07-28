@@ -1,0 +1,153 @@
+servers = (
+  {
+    address = "irc.rizon.net";
+    chatnet = "Rizon";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_cert = "~/.irssi/certs/Rizon.pem";
+    ssl_verify = "yes";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.freenode.net";
+    chatnet = "Freenode";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = {
+  Rizon = { type = "IRC"; autosendcmd = ""; };
+  Freenode = {
+    type = "IRC";
+    sasl_mechanism = "PLAIN";
+    sasl_username = "";
+    sasl_password = "";
+  };
+};
+
+channels = (
+  { name = "#news"; chatnet = "Rizon"; autojoin = "yes"; },
+  { name = "#Ginpachi-Sensei"; chatnet = "Rizon"; autojoin = "yes"; }
+);
+
+aliases = {
+  j = "join";
+  c = "clear";
+  rc = "reconnect";
+  wc = "window close";
+  dc = "disconnect";
+  t = "topic";
+  m = "msg";
+  q = "query";
+  w = "who";
+  wi = "whois";
+  host = "userhost";
+  home = "scrollback home";
+  end = "scrollback end";
+  gt = "scrollback goto";
+  l = "lastlog";
+  wl = "window list";
+  rl = "reload";
+  h = "help";
+};
+
+statusbar = {
+
+  items = {
+    barstart = "{sbstart}";
+    barend = "{sbend}";
+    window = "{sbchan $[.10]T}";
+    window_empty = "{sbservertag $tag}";
+    modes = "{sbmode $usermode}";
+    prompt = "{prompt}";
+    prompt_empty = "{prompt}";
+  };
+
+  default = {
+    window = { disabled = "yes"; };
+
+    topic = { disabled = "yes"; };
+
+    window_inact = { disabled = "yes"; };
+
+    awl = {
+      type = "root";
+      placement = "top";
+      visible = "always";
+      items = {
+        barstart = { priority = "100"; };
+        window = { priority = "1"; };
+        window_empty = { priority = "1"; };
+        modes = { priority = "100"; };
+        awl_shared = { alignment = "right"; priority = "1"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    prompt = {
+      type = "root";
+      placement = "bottom";
+      visible = "always";
+      items = {
+        prompt = { priority = "100"; };
+        prompt_empty = { priority = "100"; };
+        input = { priority = "100"; };
+      };
+    };
+
+  };
+};
+
+settings = {
+  core = {
+    real_name = "lucas";
+    user_name = "roukah";
+    nick = "roukah";
+    timestamp_format = "%H:%M";
+    quit_message = "~leaving IRC";
+  };
+
+  "fe-text" = { actlist_sort = "refnum"; };
+
+  "perl/core/scripts" = {
+    awl_shared_sbar = "0<0";
+    awl_viewer = "OFF";
+    awl_placement = "top";
+    awl_block = "11";
+    awl_position = "0";
+    awl_prefer_name = "yes";
+    awl_hide_data = "1";
+    awl_all_disable = "no";
+    awl_mouse = "yes";
+    fancy_abbrev = "head";
+    awl_custom_xform = "s/#//";
+  };
+
+  "fe-common/core" = {
+    theme = "blkribbon";
+    show_names_on_join = "no";
+    use_status_window = "yes";
+    autocreate_own_query = "no";
+  };
+  "irc/core" = {
+    part_message = "~leaving channel";
+    lag_max_before_disconnect = "2min";
+    skip_motd = "yes";
+  };
+  "irc/dcc" = { dcc_download_path = "~/Downloads/Irssi"; };
+  "fe-common/irc" = { whois_hide_safe_channel_id = "yes"; };
+};
+ignores = (
+  { mask = "TheKey"; level = "ALL"; },
+  { level = "JOINS PARTS QUITS MODES"; channels = ( "#news" ); },
+  {
+    level = "JOINS PARTS QUITS MODES";
+    channels = ( "#Ginpachi-Sensei" );
+  }
+);
+keyboard = ( 
+  { key = "meta-[M"; id = "command"; data = "mouse_xterm"; }
+);
