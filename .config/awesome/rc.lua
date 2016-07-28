@@ -52,7 +52,7 @@ settings.terminal = "urxvt"
 settings.editor = os.getenv("EDITOR") or "vim"
 settings.editor_cmd = settings.terminal .. " -e " .. settings.editor
 settings.browser = "firefox"
-settings.filemanager = "spacefm"
+settings.filemanager = "thunar"
 settings.modkey = "Mod4"
 settings.dateformat = "%Y.%m.%d %H:%M:%S"
 
@@ -451,7 +451,7 @@ awful.rules.rules = {
 				"feh",
 				"Gimp",
 				"mpv",
-				"spacefm",
+				"Thunar",
 				"Transmission",
 			}
 		},

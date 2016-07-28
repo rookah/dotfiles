@@ -7,11 +7,11 @@ export BROWSER="firefox"
 # Daemons
 compton &
 mpd
-devmon 2>&1 > /dev/null &
+dbus-launch --exit-with-session thunar --daemon &
 
 # PROGRAMS
 redshift &
 transmission-gtk -m &
 
 # WM
-exec dbus-launch --exit-with-session awesome --no-argb
+awesome --no-argb
