@@ -14,4 +14,4 @@ redshift &
 transmission-gtk -m &
 
 # WM
-awesome --no-argb
+exec dbus-launch --exit-with-session awesome --no-argb
