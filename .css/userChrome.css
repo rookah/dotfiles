@@ -67,11 +67,12 @@ tab {
   background-color 0.2s ease,
   min-width 0.2s ease-out,
   max-width 0.23s ease-out!important;
+  border-right: 1px solid #161616 !important;
+  margin-bottom: 1px !important;
 }
 
-tab[selected=true],
-tab:hover {
-  margin-bottom: 1px !important;
+.box-inherit {
+  border-left: 1px solid #161616 !important;
 }
 
 tab[selected=true],
@@ -84,12 +85,7 @@ tab:hover .tab-background-middle {
   background-color:#222222!important;
 }
 
-tab .tab-background {
-  border-left:1px solid #161616!important;
-  border-right:1px solid #161616!important;
-}
-
- .tabbrowser-tab[fadein]:not([pinned]) {
+.tabbrowser-tab[fadein]:not([pinned]) {
   min-width:120px!important;
   max-width:160px!important;
 }
@@ -128,6 +124,7 @@ tab .tab-background {
 }
 
 #urlbar {
+  margin-right: 0px !important;
   text-align: center !important;
   color: #a49b9b !important;
   margin-left: 0px !important;
