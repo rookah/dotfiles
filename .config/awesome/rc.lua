@@ -183,12 +183,6 @@ vicious.register(clockwidget.tb, vicious.widgets.date, " " .. settings.dateforma
 -- 
 -- mpdwidget = wibox.layout.margin(mpd.widget, 0, 0, -1, 0)
 
-mpdwidget = lain.widgets.mpd({
-	timeout = 2,
-	music_dir = "/media/Music",
-	cover_size = 60
-})
-
 systray = wibox.widget.systray()
 
 taglist.buttons = awful.util.table.join(
