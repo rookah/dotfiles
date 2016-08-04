@@ -42,7 +42,7 @@ export SAVEHIST=1000
 export HISTFILE=~/.zsh_history
 
 #Aliases
-alias ls='ls --color=always -h'
+alias ls='ls++'
 alias grep="grep --color=auto"
 alias shutdown='sudo shutdown -P 0'
 alias reboot='sudo reboot'
