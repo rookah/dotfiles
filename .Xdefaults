@@ -30,11 +30,9 @@ URxvt*internalBorder:	1
 
 URxvt*preeditType:      Root
 URxvt*inputMethod:      SCIM
-!URxvt*background:       #1b1b1b
 URxvt*background:       #1b1b1b
 URxvt*foreground:       #cccaca
 URxvt*cursorColor:      #e9e6e6
-
 
 !Black
 URxvt*color0:           #222222
@@ -55,7 +53,7 @@ URxvt*color12:          #94aad1
 URxvt*color5:           #947686
 URxvt*color13:          #c98dad
 !Cyan
-URxvt*color6:           #688f8a
+URxvt*color6:           #60898f
 URxvt*color14:          #8ab4be
 !White
 URxvt*color7:           #a49c9c
