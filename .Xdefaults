@@ -44,7 +44,8 @@ URxvt*color9:           #cf7275
 URxvt*color2:           #758763
 URxvt*color10:          #9ebf7c
 !Yellow
-URxvt*color3:           #c59f6f
+#URxvt*color3:           #c59f6f
+URxvt*color3:           #876d4c
 URxvt*color11:          #edc472
 !Blue
 URxvt*color4:           #70819e
