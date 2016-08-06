@@ -1,36 +1,45 @@
 servers = (
   {
-    address = "irc.rizon.net";
-    chatnet = "Rizon";
-    port = "6697";
-    use_ssl = "yes";
-    ssl_cert = "~/.irssi/certs/Rizon.pem";
-    ssl_verify = "yes";
-    autoconnect = "yes";
-  },
-  {
     address = "irc.freenode.net";
     chatnet = "Freenode";
     port = "6697";
     use_ssl = "yes";
     ssl_verify = "yes";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.rizon.net";
+    chatnet = "Rizon";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_cert = "~/.irssi/certs/Rizon.pem";
+    ssl_verify = "yes";
+    autoconnect = "no";
+  },
+  {
+    address = "irc.animebytes.tv";
+    chatnet = "Animebytes";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    autoconnect = "no";
   }
 );
 
 chatnets = {
-  Rizon = { type = "IRC"; autosendcmd = ""; };
   Freenode = {
     type = "IRC";
     sasl_mechanism = "PLAIN";
     sasl_username = "";
     sasl_password = "";
   };
+  Rizon = { type = "IRC"; };
+  Animebytes = { type = "IRC"; };
 };
 
 channels = (
-  { name = "#news"; chatnet = "Rizon"; autojoin = "yes"; },
-  { name = "#Ginpachi-Sensei"; chatnet = "Rizon"; autojoin = "yes"; }
+  { name = "#lainchan"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#news"; chatnet = "Rizon"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -41,6 +50,7 @@ aliases = {
   dc = "disconnect";
   t = "topic";
   m = "msg";
+  ns = "msg nickserv";
   q = "query";
   w = "who";
   wi = "whois";
@@ -108,11 +118,13 @@ settings = {
     nick = "roukah";
     timestamp_format = "%H:%M";
     quit_message = "~leaving IRC";
+    hostname = "aqu.a";
   };
 
   "fe-text" = { actlist_sort = "refnum"; };
 
   "perl/core/scripts" = {
+    title_string = "$N@$tag$.C";
     awl_shared_sbar = "0<0";
     awl_viewer = "OFF";
     awl_placement = "top";
@@ -129,6 +141,9 @@ settings = {
   "fe-common/core" = {
     theme = "blkribbon";
     show_names_on_join = "no";
+    bell_beeps = "yes";
+    beep_msg_level = "MSGS NOTICES INVITES DCC DCCMSGS HILIGHT";
+    hilight_color = "%Y";
     use_status_window = "yes";
     autocreate_own_query = "no";
   };
@@ -142,12 +157,9 @@ settings = {
 };
 ignores = (
   { mask = "TheKey"; level = "ALL"; },
-  { level = "JOINS PARTS QUITS MODES"; channels = ( "#news" ); },
-  {
-    level = "JOINS PARTS QUITS MODES";
-    channels = ( "#Ginpachi-Sensei" );
-  }
+  { level = "JOINS PARTS QUITS MODES"; channels = ( "#news" ); }
 );
 keyboard = ( 
   { key = "meta-[M"; id = "command"; data = "mouse_xterm"; }
 );
+hilights = ( );
