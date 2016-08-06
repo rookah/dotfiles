@@ -30,6 +30,10 @@ Plugin 'drmikehenry/vim-headerguard' " Automatically adds headerguards to C/Cpp 
 Plugin 'octol/vim-cpp-enhanced-highlight' " Enhanced highlighting
 " }
 
+" Racket {
+Plugin 'wlangstroth/vim-racket' " Simple Racket syntax file
+" }
+
 " }}}
 
 call vundle#end()

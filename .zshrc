@@ -8,6 +8,23 @@ autoload -Uz compinit promptinit
 compinit
 promptinit; prompt gentoo
 
+#less
+zmodload zsh/zpty
+
+pty() {
+	zpty pty-${UID} ${1+$@}
+	if [[ ! -t 1 ]];then
+		setopt local_traps
+		trap '' INT
+	fi
+	zpty -r pty-${UID}
+	zpty -d pty-${UID}
+}
+
+cless() {
+	pty $@ | less
+}
+
 #completion
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -33,13 +50,16 @@ eval "$(dircolors ~/.dircolors)";
 ttyctl -f
 
 #PATH
-export PATH="$PATH:/home/lucas/.bin/"
+#export PATH="$PATH:"
 
 #ENV
 export KEYTIMEOUT=1
 export HISTSIZE=1000
 export SAVEHIST=1000
 export HISTFILE=~/.zsh_history
+
+export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
+export LESS='-R '
 
 #Aliases
 alias ls='ls++'
