@@ -72,7 +72,7 @@ set linebreak " wraps at the end of the word instead of character
 set cindent " automatic C program indenting
 set cinoptions=g0
 " set list lcs=tab:\¦\ 
-" set expandtab
+set expandtab
 set softtabstop=4
 set tabstop=4
 set shiftwidth=4 
@@ -143,7 +143,7 @@ let g:airline_powerline_fonts = 1
 
 " Rainbow
 let g:rainbow_active=0
-au FileType c,cpp,html,javascript call rainbow#load()
+au FileType c,cpp,html,racket call rainbow#load()
 au FileType cpp set filetype=c
 let g:rainbow_guifgs = ['#94aad1', '#8ab4be', '#edc472', '#c98dad']
 let g:rainbow_ctermfgs = ['12', '14', '11', '13']
