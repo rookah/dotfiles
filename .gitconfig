@@ -1,0 +1,17 @@
+[user]
+	email = gisselairel@gmail.com
+	name = rookah
+
+[push]
+	default = matching
+
+[log]
+    abbrevCommit = true
+    date = relative
+    decorate = short
+
+[format]
+    pretty=%C(3)* %C(2)%h %C(reset)%s %C(8)%cd%C(9)%d
+
+[color]
+	ui = auto
