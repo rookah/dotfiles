@@ -37,13 +37,16 @@ Plugin 'wlangstroth/vim-racket' " Simple Racket syntax file
 " }}}
 
 call vundle#end()
+
 filetype plugin indent on
 syntax on
 
 " CONFIG {{
 set viminfo+=n~/.vim/viminfo
 set mouse=a " use mouse for all moves
+
 set t_Co=256 " use terminal colors
+
 set encoding=utf-8 " set encoding protocol
 
 set backspace=indent,eol,start
@@ -134,6 +137,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_c_auto_refresh_includes = 1
 let g:syntastic_cpp_no_include_search = 1
 let g:syntastic_enable_highlighting = 1
+let g:syntastic_enable_racket_racket_checker = 1
 
 
 " Set theme
@@ -143,8 +147,7 @@ let g:airline_powerline_fonts = 1
 
 " Rainbow
 let g:rainbow_active=0
-au FileType c,cpp,html,racket call rainbow#load()
-au FileType cpp set filetype=c
+au FileType c,cpp,html call rainbow#load()
 let g:rainbow_guifgs = ['#94aad1', '#8ab4be', '#edc472', '#c98dad']
 let g:rainbow_ctermfgs = ['12', '14', '11', '13']
 
@@ -214,3 +217,4 @@ set guicursor+=i:block-Cursor
 set guicursor+=n-v-c:blinkon0
 set guicursor+=i:blinkon0
 " }}}
+

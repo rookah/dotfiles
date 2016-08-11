@@ -55,7 +55,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "ahoka"
+let colors_name = "YumyW"
 
 "}}}
 " GUI And Cterm Palettes:"{{{
