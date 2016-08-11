@@ -68,7 +68,7 @@ alternative_header_first_line_format = "{$b$2{%t}|{%f}$9$/b}"
 alternative_header_second_line_format = "{{$6$b%a$/b$9}{ $b$1-$9$/b $8%b$9}{ $b$1($9$/b $6%y$9 $b$1)$9$/b}}|{%D}"
 user_interface = "alternative"
 progressbar_look = "█ "
-display_bitrate = "no"
+display_bitrate = "yes"
 titles_visibility = "no"
 header_visibility = "no"
 

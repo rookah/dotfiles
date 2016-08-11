@@ -202,7 +202,6 @@ abstracts = {
   # hilight with specified color, $0 = color, $1 = text
   sb_act_hilight_color = "$0$1-%n";
 
-
   # Scripts
   #
   # user count
@@ -253,7 +252,7 @@ formats = {
     pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-12]0}{msgchannel $1}}$2";
     pubmsg_hilight = "{pubmsghinick $0 $3 $[-12]1%n}$2";
     pubmsg_hilight_channel = "{pubmsghinick $0 $4 $[-12]1{msgchannel $2}}$3";
-    pubmsg = "{pubmsgnick $2 {pubnick \00312$[-12]0}}$1";
+    pubmsg = "{pubmsgnick $2 {pubnick \00310$[-12]0}}$1";
     pubmsg_channel = "{pubmsgnick $2 {pubnick %m$[-12]0}}$1";
     msg_private_query = "{privmsgnick $[-12]0}$2";
   };
@@ -269,7 +268,7 @@ formats = {
   "Irssi::Script::adv_windowlist" = {
     awl_display_key = "%R$Q%K|%W$H$C$S";
     awl_display_header = "";
-    awl_display_key_active = "%R$Q%K|%W$H$C$S";
+    awl_display_key_active = "";
     awl_abbrev_chars = "";
   };
 };

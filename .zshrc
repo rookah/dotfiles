@@ -81,12 +81,6 @@ ncmpcppShow() { ncmpcpp <$TTY; zle redisplay; }
 zle -N ncmpcppShow
 bindkey '^n' ncmpcppShow
 
-#irssi script
-irssiShow() { irssi <$TTY; zle redisplay; }
-zle -N irssiShow
-bindkey '^e' irssiShow
-
-
 #History
 [[ -n "^[[A"   ]]  && bindkey  "^[[A"    history-beginning-search-backward
 [[ -n "^[[B" ]]  && bindkey  "^[[B"  history-beginning-search-forward
