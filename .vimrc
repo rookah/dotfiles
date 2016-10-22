@@ -10,8 +10,8 @@ Plugin 'scrooloose/nerdtree' " Directory tree <C-n>
 Plugin 'scrooloose/syntastic' " Code correction
 Plugin 'majutsushi/tagbar' " Source code tags
  
-" Plugin 'Valloric/YouCompleteMe' " Auto-completion
-Plugin 'rdnetto/YCM-Generator'
+Plugin 'Valloric/YouCompleteMe' " Auto-completion
+Plugin 'rdnetto/YCM-Generator' 
  
 Plugin 'yegappan/grep' " Vim grep
 Plugin 'xolox/vim-misc'
@@ -123,9 +123,12 @@ noremap K J
 
 " YouCompleteMe
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+
+let g:ycm_python_binary_path = '/usr/bin/python2.7'
+let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_extra_conf_globlist = ['~/uni/LIF7/Projet/*']
+let g:ycm_extra_conf_globlist = ['~/Programming/*']
 let g:ycm_register_as_syntastic_checker = 0
 let g:ycm_show_diagnostics_ui = 0
 
@@ -134,9 +137,13 @@ let g:ycm_show_diagnostics_ui = 0
 let g:syntastic_stl_format ='' 
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_c_auto_refresh_includes = 1
-let g:syntastic_cpp_no_include_search = 1
 let g:syntastic_enable_highlighting = 1
+
+let g:syntastic_c_auto_refresh_includes = 1
+
+let g:syntastic_cpp_compiler_options = '-std=c++11'
+let g:syntastic_cpp_no_include_search = 1
+
 let g:syntastic_enable_racket_racket_checker = 1
 
 
