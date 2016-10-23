@@ -19,7 +19,7 @@ Plugin 'xolox/vim-session' " Session management for Vim
  
 " Plugin 'Yggdroot/indentLine' " Indent line
 Plugin 'Raimondi/delimitMate' " Automatic closing of quotes, brackets etc
-Plugin 'oblitum/rainbow' " Rainbow parenthesis
+Plugin 'luochen1990/rainbow' " Rainbow parenthesis
  
 Plugin 'bling/vim-airline' " Status/Tabline
 
@@ -126,6 +126,7 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 let g:ycm_python_binary_path = '/usr/bin/python2.7'
 let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+set completeopt-=preview
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_extra_conf_globlist = ['~/Programming/*']
@@ -138,12 +139,9 @@ let g:syntastic_stl_format =''
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting = 1
-
 let g:syntastic_c_auto_refresh_includes = 1
-
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 let g:syntastic_cpp_no_include_search = 1
-
 let g:syntastic_enable_racket_racket_checker = 1
 
 
@@ -153,10 +151,11 @@ let g:airline_powerline_fonts = 1
 
 
 " Rainbow
-let g:rainbow_active=0
-au FileType c,cpp,html call rainbow#load()
-let g:rainbow_guifgs = ['#94aad1', '#8ab4be', '#edc472', '#c98dad']
-let g:rainbow_ctermfgs = ['12', '14', '11', '13']
+let g:rainbow_active=1
+let g:rainbow_conf = {
+            \   'guifgs': ['#94aad1', '#8ab4be', '#edc472', '#c98dad'],
+            \   'ctermfgs': ['12', '14', '11', '13'],
+            \}
 
 "indentLine
 " autocmd BufRead * :IndentLinesEnable
@@ -180,7 +179,6 @@ set sessionoptions-=help
 set sessionoptions-=options
 set sessionoptions+=resize
 set sessionoptions+=tabpages
-
 let g:session_autosave = 'yes'
 let g:session_autoload = 'no'
 let g:session_autosave_periodic = 0
