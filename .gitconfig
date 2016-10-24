@@ -5,6 +5,9 @@
 [push]
 	default = matching
 
+[alias]
+    st = status
+
 [log]
     abbrevCommit = true
     date = relative
