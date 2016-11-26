@@ -1,0 +1,7 @@
+map j scroll up
+map k scroll down
+
+set font cure
+
+map [index] j navigate_index up
+map [index] k navigate_index down
