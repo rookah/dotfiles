@@ -3,7 +3,7 @@ local awful = require("awful")
 theme   = { }
 confdir = awful.util.getdir("config") .. "/lucas"
 
-theme.wallpaper = "~/Pictures/Wallpapers/1467225965420.png"
+theme.wallpaper = "~/Pictures/Wallpapers/Wallpaper/1459173352989.png"
 
 theme.font		= "cure 8"
 
