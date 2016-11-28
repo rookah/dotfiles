@@ -1,7 +1,9 @@
+set font cure
+
 map j scroll up
 map k scroll down
-
-set font cure
+map J navigate previous
+map K navigate next
 
 map [index] j navigate_index up
 map [index] k navigate_index down
