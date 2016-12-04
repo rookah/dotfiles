@@ -14,7 +14,7 @@
     decorate = short
 
 [format]
-    pretty=%C(3)* %C(2)%h %C(reset)%s %C(8)%cd%C(9)%d
+    pretty=%C(3)* %C(2)%h %C(reset)%s %C(8)%cd%C(auto)%d
 
 [color]
 	ui = auto
