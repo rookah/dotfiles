@@ -16,6 +16,7 @@ Plugin 'rdnetto/YCM-Generator'
 Plugin 'yegappan/grep' " Vim grep
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session' " Session management for Vim
+Plugin 'xolox/vim-notes' " Taking notes in Vim
  
 " Plugin 'Yggdroot/indentLine' " Indent line
 Plugin 'Raimondi/delimitMate' " Automatic closing of quotes, brackets etc
@@ -96,8 +97,9 @@ map <silent> <F3> :TagbarToggle<CR>
 map <silent> <F4> :ccl<CR>
 map <silent> <F5> :make! \| :copen<CR>
 
-" Map ctrl + w to save current buffer if it has been modified
-noremap <silent><C-w> :update<CR>
+"Map ctrl + w to save current buffer if it has been modified
+map gf <c-w>gf
+" noremap <silent><C-w> :update<CR>
 
 " Map shift + w to write all buffers
 noremap <silent><S-w> :wa<CR>
@@ -115,10 +117,10 @@ nnoremap <silent><C-l> :wincmd l<CR>
 " Clear search
 nmap <silent><C-b> :silent noh<CR>
 
-" colemeak
-noremap j k
+" colemak
+noremap j gk
 noremap J K
-noremap k j
+noremap k gj
 noremap K J
 
 " YouCompleteMe
