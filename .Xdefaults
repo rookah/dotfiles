@@ -11,10 +11,10 @@ Xcursor.size:			12
 
 
 urxvt*font:				xft:tewi2a:pixelsize=9:antialias=true,\
-						xft:Zpix:pixelsize=10:antialias=true
+						xft:Gothic:pixelsize=9:antialias=true
 
 urxvt*boldFont:			xft:tewi2a:pixelsize=9:antialias=true,\
-						xft:Zpix:pixelsize=10:antialias=true
+						xft:Gothic:pixelsize=9:antialias=true
 
 URxvt.letterSpace:		0
 URxvt.fading:           false

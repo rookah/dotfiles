@@ -82,6 +82,7 @@ set tabstop=4
 set shiftwidth=4 
 
 set timeoutlen=1000 ttimeoutlen=0
+set tabpagemax=100 " maximum number of tabs limit
 
 
 " Vimtex
