@@ -87,6 +87,7 @@ set tabpagemax=100 " maximum number of tabs limit
 
 " Vimtex
 let g:tvimtex_enabled = 1
+let g:vimtex_view_general_viewer = "zathura"
 set grepprg=grep\ -nh\ $*
 let g:tex_flavor = "latex"
 
@@ -98,9 +99,11 @@ map <silent> <F3> :TagbarToggle<CR>
 map <silent> <F4> :ccl<CR>
 map <silent> <F5> :make! \| :copen<CR>
 
-"Map ctrl + w to save current buffer if it has been modified
-map gf <c-w>gf
+" Map ctrl + w to save current buffer if it has been modified
 " noremap <silent><C-w> :update<CR>
+
+" gf shortcut
+nnoremap gf <c-w>gf
 
 " Map shift + w to write all buffers
 noremap <silent><S-w> :wa<CR>

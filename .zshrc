@@ -67,6 +67,8 @@ alias grep="grep --color=auto"
 alias shutdown='sudo shutdown -P 0'
 alias reboot='sudo reboot'
 alias ..='cd ..'
+alias vimtex='vim --servername VIM'
+alias scrot="scrot '%Y_%s_\$wx\$h.png' -e 'mv \$f ~/Pictures/Screenshots/'"
 
 #custom functions
 

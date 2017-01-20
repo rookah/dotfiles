@@ -69,7 +69,7 @@ if beautiful.wallpaper then
 		if s == 1 then
 			gears.wallpaper.maximized(beautiful.wallpaper, s, true)
 		else 
-			gears.wallpaper.maximized("/home/lucas/Pictures/Wallpapers/1467225965420_void2.png", s, true)
+			gears.wallpaper.maximized("/home/roukah/Pictures/Wallpapers/1467225965420_void2.png", s, true)
 		end
 	end
 end

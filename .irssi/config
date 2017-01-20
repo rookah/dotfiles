@@ -5,7 +5,7 @@ servers = (
     port = "6697";
     use_ssl = "yes";
     ssl_verify = "yes";
-    autoconnect = "yes";
+    autoconnect = "no";
   },
   {
     address = "irc.rizon.net";
@@ -14,7 +14,7 @@ servers = (
     use_ssl = "yes";
     ssl_cert = "~/.irssi/certs/Rizon.pem";
     ssl_verify = "yes";
-    autoconnect = "no";
+    autoconnect = "yes";
   },
   {
     address = "irc.animebytes.tv";
@@ -38,7 +38,7 @@ chatnets = {
 };
 
 channels = (
-  { name = "#lainchan"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#lainchan"; chatnet = "Freenode"; autojoin = "no"; },
   { name = "#news"; chatnet = "Rizon"; autojoin = "yes"; }
 );
 
@@ -113,7 +113,7 @@ statusbar = {
 
 settings = {
   core = {
-    real_name = "lucas";
+    real_name = "roukah";
     user_name = "roukah";
     nick = "roukah";
     timestamp_format = "%H:%M";
@@ -139,13 +139,14 @@ settings = {
   };
 
   "fe-common/core" = {
-    theme = "blkribbon";
+    theme = "roukah";
     show_names_on_join = "no";
-    bell_beeps = "yes";
     beep_msg_level = "MSGS NOTICES INVITES DCC DCCMSGS HILIGHT";
     hilight_color = "%Y";
     use_status_window = "yes";
     autocreate_own_query = "no";
+    hilight_nick_matches_everywhere = "yes";
+    hilight_act_color = "%Y";
   };
   "irc/core" = {
     part_message = "~leaving channel";
