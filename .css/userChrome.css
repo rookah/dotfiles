@@ -72,8 +72,9 @@ tab {
   margin-bottom: 1px !important;
 }
 
-.box-inherit {
-  border-left: 1px solid #161616 !important;
+.box-inherit,
+.scrollbox-innerbox {
+  border-left: 1px solid black !important;
 }
 
 tab[selected=true],

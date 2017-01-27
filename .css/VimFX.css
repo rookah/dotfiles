@@ -1,0 +1,9 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+#VimFxMarkersContainer .marker {
+  background-color: #FFD76E !important;
+  border: solid 1px #AD810C !important;
+  border-radius: 2px !important;
+  font-size: 12px !important;
+  color: #302505 !important;
+  font-family: "cure" !important;
+}
