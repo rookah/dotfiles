@@ -28,8 +28,8 @@ URxvt*termName:         rxvt-unicode
 
 URxvt*internalBorder:	1
 
-URxvt*preeditType:      Root
-URxvt*inputMethod:      SCIM
+URxvt*preeditType:      OverTheSpot
+URxvt*inputMethod:      ibus
 URxvt*background:       #1b1b1b
 URxvt*foreground:       #cccaca
 URxvt*cursorColor:      #e9e6e6
