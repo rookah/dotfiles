@@ -31,8 +31,12 @@ Plugin 'drmikehenry/vim-headerguard' " Automatically adds headerguards to C/Cpp 
 Plugin 'octol/vim-cpp-enhanced-highlight' " Enhanced highlighting
 " }
 
-" Racket {
-Plugin 'wlangstroth/vim-racket' " Simple Racket syntax file
+" Haskell {
+Plugin 'alx741/vim-hindent' " Automatic indent
+Plugin 'eagletmt/neco-ghc' " Haskell Omnifunc
+
+" LaTeX {
+Plugin 'lervag/vimtex'
 " }
 
 " }}}
@@ -76,10 +80,11 @@ set linebreak " wraps at the end of the word instead of character
 set cindent " automatic C program indenting
 set cinoptions=g0
 " set list lcs=tab:\¦\ 
-set expandtab
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4 
+set tabstop=8 " tab is 8 spaces
+set expandtab " use spaces instead of tabs
+set softtabstop=4 " insert 4 spaces with tab
+set shiftwidth=4 " indent is 4 spaces
+set shiftround " round indent to nearest shiftwidth multiple
 
 set timeoutlen=1000 ttimeoutlen=0
 set tabpagemax=100 " maximum number of tabs limit
@@ -173,6 +178,13 @@ let g:rainbow_conf = {
 " let g:indentLine_color_gui = '#222222'
 " let g:indentLine_color_term = 236
 " let g:indentLine_color_tty = 236
+
+" Haskell
+let g:hindent_on_save = 1
+let g:hindent_line_length = 80
+let g:hindent_indent_size = 4
+
+au FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 
 " NERDTree
