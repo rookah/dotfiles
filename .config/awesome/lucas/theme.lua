@@ -10,8 +10,8 @@ theme.font		= "cure 8"
 theme.fg_normal = "#cccaca"
 theme.fg_focus  = "#e9e6e6"
 theme.fg_urgent = "#cf7275"
-theme.bg_normal  = "#161616"
-theme.bg_focus = "#222222"
+theme.bg_normal = "#222222"
+theme.bg_focus  = "#161616"
 theme.bg_urgent = "#161616"
 
 theme.border_width  = 1
