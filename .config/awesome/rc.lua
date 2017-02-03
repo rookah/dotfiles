@@ -18,9 +18,10 @@ local vicious = require("vicious")
 -- local awesompd = require("awesompd/awesompd")
 local lain = require("lain")
 
-
 -- Makes sure that there's always a client that will have focus
 require("awful.autofocus")
+
+awful.util.spawn_with_shell("ibus-daemon -drx")
 
 -- {{{ Error handling
 -- -- Startut
