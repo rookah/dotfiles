@@ -6,10 +6,9 @@ export BROWSER="firefox"
 export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
-#export GTK_IM_MODULE_FILE=/usr/lib/gtk-3.0/3.0.0/immodules.cache
 
 # Daemons
-compton -b 
+compton &
 mpd
 dbus-launch --exit-with-session thunar --daemon &
 
