@@ -3,10 +3,14 @@ set selection-notification false
 
 map j scroll up
 map k scroll down
+map d scroll half-down
+map u scroll half-up
+map <C-d> toggle_page_mode
+
 map J navigate previous
 map K navigate next
-map <S-space> navigate previous
-map space navigate next
+map <S-Space> navigate previous
+map <Space> navigate next
 
 map [index] j navigate_index up
 map [index] k navigate_index down
