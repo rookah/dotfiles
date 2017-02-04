@@ -1,11 +1,7 @@
-set font cure
-set selection-notification false
-
 map j scroll up
 map k scroll down
 map d scroll half-down
 map u scroll half-up
-map <C-d> toggle_page_mode
 
 map J navigate previous
 map K navigate next
@@ -14,3 +10,37 @@ map <Space> navigate next
 
 map [index] j navigate_index up
 map [index] k navigate_index down
+
+map <C-d> toggle_page_mode
+
+
+set font cure
+set selection-notification false
+
+set statusbar-home-tilde true
+set window-title-basename true
+set window-title-page true
+
+
+set default-fg "#cccaca"
+set default-bg "#222222"
+
+set statusbar-fg "#e9e6e6"
+set statusbar-bg "#1b1b1b"
+set inputbar-fg "#8f5b5b"
+set inputbar-bg "#1b1b1b"
+
+set index-fg "#cccaca"
+set index-bg "#222222"
+set index-active-fg "#e9e6e6"
+set index-active-bg "#8f5b5b"
+
+set completion-fg "#cccaca"
+set completion-bg "#222222"
+set completion-group-fg "#cccaca"
+set completion-group-bg "#222222"
+set completion-highlight-fg "#e9e6e6"
+set completion-highlight-bg "#8f5b5b"
+
+set highlight-color "#cf7275"
+set highlight-active-color "#cf7275"
