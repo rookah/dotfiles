@@ -50,7 +50,7 @@ eval "$(dircolors ~/.dircolors)";
 ttyctl -f
 
 #PATH
-export PATH="$PATH:~/.local/bin/"
+export PATH="$PATH:/home/roukah/.local/bin/"
 
 #ENV
 export KEYTIMEOUT=1
