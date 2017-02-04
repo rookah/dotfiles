@@ -99,6 +99,10 @@ done
 setopt PROMPT_SUBST
 export PS1="$FG[236]$BG[235]$FG[9] %~ $FG[235]$BG[1]$FG[0]\$(__git_ps1 '  %s')$RESET$FG[1] $RESET"
 #PROMPT="$FG[2]$BG[0] %~$FG[8] ❯$FG[2]❯$RESET "
-
-
 unset FG BG RESET
+
+
+#Misc
+bindkey -v #vim-mode
+bindkey -M vicmd 'j' history-beginning-search-backward
+bindkey -M vicmd 'k' history-beginning-search-forward

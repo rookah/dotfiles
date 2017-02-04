@@ -1,9 +1,12 @@
 set font cure
+set selection-notification false
 
 map j scroll up
 map k scroll down
 map J navigate previous
 map K navigate next
+map <S-space> navigate previous
+map space navigate next
 
 map [index] j navigate_index up
 map [index] k navigate_index down
