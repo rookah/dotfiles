@@ -39,7 +39,7 @@ chatnets = {
 
 channels = (
   { name = "#lainchan"; chatnet = "Freenode"; autojoin = "no"; },
-  { name = "#news"; chatnet = "Rizon"; autojoin = "yes"; }
+  { name = "#news"; chatnet = "Rizon"; autojoin = "no"; }
 );
 
 aliases = {
