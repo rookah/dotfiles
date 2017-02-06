@@ -1,15 +1,20 @@
 [user]
-	email = gisselairel@gmail.com
-	name = rookah
+    email = gisselairel@gmail.com
+    name = rookah
 
 [credential]
-	helper = cache --timeout=10000
+    helper = cache --timeout=10000
 
 [push]
-	default = matching
+    default = matching
+
+[diff]
+    tool = vimdiff
+    algorithm = minimal
 
 [alias]
     st = status
+    dt = difftool
 
 [log]
     abbrevCommit = true
@@ -20,4 +25,4 @@
     pretty=%C(3)* %C(2)%h %C(reset)%s %C(8)%cd%C(auto)%d
 
 [color]
-	ui = auto
+    ui = auto
