@@ -8,7 +8,7 @@ Plugin 'gmarik/vundle'
 " General plugins {{{
 Plugin 'scrooloose/nerdtree' " Directory tree <C-n>
 Plugin 'scrooloose/syntastic' " Code correction
-Plugin 'majutsushi/tagbar' " Source code tags
+Plugin 'majutsushi/tagbar' " [ce]tags bar
  
 Plugin 'Valloric/YouCompleteMe' " Auto-completion
 Plugin 'rdnetto/YCM-Generator' 
@@ -18,7 +18,6 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session' " Session management for Vim
 Plugin 'xolox/vim-notes' " Taking notes in Vim
  
-" Plugin 'Yggdroot/indentLine' " Indent line
 Plugin 'Raimondi/delimitMate' " Automatic closing of quotes, brackets etc
 Plugin 'luochen1990/rainbow' " Rainbow parenthesis
  
@@ -32,7 +31,8 @@ Plugin 'octol/vim-cpp-enhanced-highlight' " Enhanced highlighting
 " }
 
 " Haskell {
-Plugin 'alx741/vim-hindent' " Automatic indent
+"Plugin 'alx741/vim-hindent' " Indent helper
+Plugin 'neovimhaskell/haskell-vim' " Indent helper
 Plugin 'eagletmt/neco-ghc' " Haskell Omnifunc
 
 " LaTeX {
@@ -88,18 +88,11 @@ set shiftround " round indent to nearest shiftwidth multiple
 
 set timeoutlen=1000 ttimeoutlen=0
 set tabpagemax=100 " maximum number of tabs limit
-
-
-" Vimtex
-let g:tvimtex_enabled = 1
-let g:vimtex_view_general_viewer = "zathura"
-set grepprg=grep\ -nh\ $*
-let g:tex_flavor = "latex"
+set ttyfast " fast terminal
 
 " }}
 
 " Mapping
-"map <C-h> :HeaderguardAdd<CR>
 map <silent> <F3> :TagbarToggle<CR>
 map <silent> <F4> :ccl<CR>
 map <silent> <F5> :make! \| :copen<CR>
@@ -132,17 +125,17 @@ noremap J K
 noremap k gj
 noremap K J
 
+
 " YouCompleteMe
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-
 let g:ycm_python_binary_path = '/usr/bin/python2.7'
 let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
-set completeopt-=preview
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_extra_conf_globlist = ['~/Programming/*']
 let g:ycm_register_as_syntastic_checker = 0
 let g:ycm_show_diagnostics_ui = 0
+set completeopt-=preview
 
 
 " Syntastic
@@ -168,28 +161,17 @@ let g:rainbow_conf = {
             \   'ctermfgs': ['12', '14', '11', '13'],
             \}
 
-"indentLine
-" autocmd BufRead * :IndentLinesEnable
-" let g:indentLines_loaded = 1
-" let g:indentLines_enabled = 1
-" let g:indentLine_char = '|'
-" let g:indentLine_bufNameExclude = [ 'NERD_tree*' ]
-" let g:indentLine_noConcealCursor = 1
-" let g:indentLine_color_gui = '#222222'
-" let g:indentLine_color_term = 236
-" let g:indentLine_color_tty = 236
-
-" Haskell
-let g:hindent_on_save = 1
-let g:hindent_line_length = 80
-let g:hindent_indent_size = 4
-
-au FileType haskell setlocal omnifunc=necoghc#omnifunc
-
 
 " NERDTree
 let g:NERDTreeDirArrows=0
 map <C-n> :NERDTreeToggle<CR>
+
+
+" Vimtex
+let g:tvimtex_enabled = 1
+let g:vimtex_view_general_viewer = "zathura"
+set grepprg=grep\ -nh\ $*
+let g:tex_flavor = "latex"
 
 
 " Sessions
@@ -221,23 +203,32 @@ augroup END
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 
-" Adds a dummy sign
-" augroup mine
-" 	au BufWinEnter * sign define mysign
-" 	au BufWinEnter * exe "sign place 1337 line=1 name=mysign buffer=" . bufnr('%')
-" augroup end
-
-
 colorscheme YumyW
 
 
-" GVim {{{
-set guioptions=+a
-set guifont=tewi2a
-set guiheadroom=0
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i:block-Cursor
-set guicursor+=n-v-c:blinkon0
-set guicursor+=i:blinkon0
-" }}}
+" Haskell {{{
 
+let g:hindent_on_save = 1
+let g:hindent_line_length = 80
+let g:hindent_indent_size = 2
+
+let g:haskell_classic_highlighting = 0
+let g:haskell_disable_TH = 0
+let g:haskell_indent_disable = 0
+
+let g:haskell_indent_if = 2
+let g:haskell_indent_case = 2
+let g:haskell_indent_let = 4
+let g:haskell_indent_where = 6
+let g:haskell_indent_do = 2
+let g:haskell_indent_in = 0
+let g:haskell_indent_guard = 2
+
+augroup ft_haskell
+    set shiftwidth=2
+    au!
+    au FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+augroup END
+
+" }}}
