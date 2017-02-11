@@ -32,7 +32,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight' " Enhanced highlighting
 
 " Haskell {
 "Plugin 'alx741/vim-hindent' " Indent helper
-Plugin 'neovimhaskell/haskell-vim' " Indent helper
+Plugin 'neovimhaskell/haskell-vim'
 Plugin 'eagletmt/neco-ghc' " Haskell Omnifunc
 
 " LaTeX {
@@ -51,8 +51,7 @@ set viminfo+=n~/.vim/viminfo
 set mouse=a " use mouse for all moves
 
 set t_Co=256 " use terminal colors
-
-set encoding=utf-8 " set encoding protocol
+set encoding=utf-8 " set term encoding
 
 set backspace=indent,eol,start
 
@@ -198,6 +197,39 @@ augroup END
 " nnoremap o ox<BS>
 " nnoremap O Ox<BS>
 
+
+" Remove autocommenting
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" NERDTree
+let g:NERDTreeDirArrows=0
+map <C-n> :NERDTreeToggle<CR>
+
+
+" Vimtex
+let g:tvimtex_enabled = 1
+let g:vimtex_view_general_viewer = "zathura"
+set grepprg=grep\ -nh\ $*
+let g:tex_flavor = "latex"
+
+
+" Sessions
+set sessionoptions-=help
+set sessionoptions-=options
+set sessionoptions+=resize
+set sessionoptions+=tabpages
+let g:session_autosave = 'yes'
+let g:session_autoload = 'no'
+let g:session_autosave_periodic = 0
+let g:session_default_to_last = 1
+let g:session_persist_globals = [ '&expandtab' ]
+
+
+" Save cursor pos {
+augroup resCur
+	autocmd!
+	autocmd BufReadPost * call setpos(".", getpos("'\""))
+augroup END
 
 " Remove autocommenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
