@@ -257,7 +257,6 @@ let g:haskell_indent_in = 0
 let g:haskell_indent_guard = 2
 
 augroup ft_haskell
-    set shiftwidth=2
     au!
     au FileType haskell setlocal omnifunc=necoghc#omnifunc
 
