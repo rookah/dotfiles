@@ -12,6 +12,13 @@
     tool = vimdiff
     algorithm = minimal
 
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+
+[mergetool]
+    prompt = false
+
 [alias]
     st = status
     dt = difftool
