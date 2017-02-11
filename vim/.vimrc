@@ -31,7 +31,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight' " Enhanced highlighting
 " }
 
 " Haskell {
-"Plugin 'alx741/vim-hindent' " Indent helper
+Plugin 'alx741/vim-hindent' " Indent helper
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'eagletmt/neco-ghc' " Haskell Omnifunc
 
