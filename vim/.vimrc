@@ -51,8 +51,7 @@ set viminfo+=n~/.vim/viminfo
 set mouse=a " use mouse for all moves
 
 set t_Co=256 " use terminal colors
-
-set encoding=utf-8 " set encoding protocol
+set encoding=utf-8 " set term encoding
 
 set backspace=indent,eol,start
 
@@ -182,7 +181,7 @@ let g:rainbow_conf = {
 " Haskell
 let g:hindent_on_save = 1
 let g:hindent_line_length = 80
-let g:hindent_indent_size = 4
+let g:hindent_indent_size = 2
 
 au FileType haskell setlocal omnifunc=necoghc#omnifunc
 
