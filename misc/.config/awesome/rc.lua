@@ -1,9 +1,5 @@
 local tags      = {}
-local statusbar = {}
-local promptbox = {}
 local menu	    = {}
-local taglist   = {}
-local tasklist  = {}
 local layoutbox = {}
 local settings  = {}
 
@@ -50,7 +46,7 @@ end
 -- }}}
 
 -- {{{ Settings
-beautiful.init(awful.util.getdir("config") .. "/lucas/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/roukah/theme.lua")
 
 settings.bar_height = 16
 settings.terminal = "urxvt"
@@ -101,19 +97,6 @@ mainmenu = awful.menu({
 
 -- {{{ Wibar
 
-local function client_menu_toggle_fn()
-    local instance = nil
-    return function ()
-        if instance and instance.wibox.visible then
-            instance:hide()
-            instance = nil
-        else
-            instance = awful.menu.clients({ theme = { width = 250 } })
-        end
-    end
-end
-
--- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
 awful.button({ }, 1, function(t) t:view_only() end),
 awful.button({ }, 3, awful.tag.viewtoggle),
@@ -254,7 +237,6 @@ awful.screen.connect_for_each_screen(function(s)
   awful.button({ }, 5, function () awful.layout.inc(-1) end)))
 
   -- Create a taglist widget
-  -- To align tags names on the center, tb:set_align("center") in /usr/share/awesome/lib/awful/widget/common.lua
   s.taglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
 
   -- Create a tasklist widget
@@ -279,8 +261,9 @@ awful.screen.connect_for_each_screen(function(s)
       { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
       s.taglist,
+      s.promptbox,
       s.layoutbox,
-      s.promptbox },
+    },
       s.tasklist, -- Middle widget
       { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
@@ -320,14 +303,15 @@ awful.screen.connect_for_each_screen(function(s)
       { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
       s.taglist,
+      s.promptbox,
       s.layoutbox,
-      s.promptbox },
+    },
       s.tasklist, -- Middle widget
       { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
     }
   }
-  end
+end
 end)
 
 -- }}}

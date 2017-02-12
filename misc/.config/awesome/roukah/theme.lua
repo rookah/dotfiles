@@ -1,7 +1,7 @@
 local awful = require("awful")
 
 theme   = { }
-confdir = awful.util.getdir("config") .. "/lucas"
+confdir = awful.util.getdir("config") .. "/roukah"
 
 theme.wallpaper = "~/Pictures/Wallpapers/Wallpaper/1459173352989.png"
 
@@ -25,6 +25,7 @@ theme.menu_border_color = "#161616"
 
 theme.useless_gap_width = 6
 theme.tasklist_disable_icon = true
+theme.tasklist_align = "center"
 theme.tasklist_sticky = ""
 theme.tasklist_ontop = ""
 theme.tasklist_above = ""
