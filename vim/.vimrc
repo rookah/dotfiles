@@ -31,8 +31,8 @@ Plugin 'octol/vim-cpp-enhanced-highlight' " Enhanced highlighting
 " }
 
 " Haskell {
-Plugin 'alx741/vim-hindent' " Indent helper
-Plugin 'neovimhaskell/haskell-vim'
+Plugin 'neovimhaskell/haskell-vim' " Haskell extension
+Plugin 'alx741/vim-hindent' " Built-in hindent
 Plugin 'eagletmt/neco-ghc' " Haskell Omnifunc
 
 " LaTeX {
@@ -92,7 +92,6 @@ set ttyfast " fast terminal
 " }}
 
 " Mapping
-map <silent> <F3> :TagbarToggle<CR>
 map <silent> <F4> :ccl<CR>
 map <silent> <F5> :make! \| :copen<CR>
 
@@ -148,6 +147,18 @@ let g:syntastic_cpp_no_include_search = 1
 let g:syntastic_enable_racket_racket_checker = 1
 
 
+" NERDTree
+let g:NERDTreeDirArrows=0
+map <C-n> :NERDTreeToggle<CR>
+
+
+" Tagbar
+map <silent> <F3> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+let g:tagbar_map_nextfold = "zk"
+let g:tagbar_map_prevfold = "zj"
+
+
 " Set theme
 let g:airline_theme = 'powerlineish'
 let g:airline_powerline_fonts = 1
@@ -161,11 +172,6 @@ let g:rainbow_conf = {
             \}
 
 
-" NERDTree
-let g:NERDTreeDirArrows=0
-map <C-n> :NERDTreeToggle<CR>
-
-
 " Vimtex
 let g:tvimtex_enabled = 1
 let g:vimtex_view_general_viewer = "zathura"
@@ -190,13 +196,6 @@ augroup resCur
 	autocmd!
 	autocmd BufReadPost * call setpos(".", getpos("'\""))
 augroup END
-
-
-" Keep indent after blank line
-" inoremap <CR> <CR>x<BS>
-" nnoremap o ox<BS>
-" nnoremap O Ox<BS>
-
 
 " Remove autocommenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -205,31 +204,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:NERDTreeDirArrows=0
 map <C-n> :NERDTreeToggle<CR>
 
-
-" Vimtex
-let g:tvimtex_enabled = 1
-let g:vimtex_view_general_viewer = "zathura"
-set grepprg=grep\ -nh\ $*
-let g:tex_flavor = "latex"
-
-
-" Sessions
-set sessionoptions-=help
-set sessionoptions-=options
-set sessionoptions+=resize
-set sessionoptions+=tabpages
-let g:session_autosave = 'yes'
-let g:session_autoload = 'no'
-let g:session_autosave_periodic = 0
-let g:session_default_to_last = 1
-let g:session_persist_globals = [ '&expandtab' ]
-
-
-" Save cursor pos {
-augroup resCur
-	autocmd!
-	autocmd BufReadPost * call setpos(".", getpos("'\""))
-augroup END
 
 " Remove autocommenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -244,7 +218,39 @@ let g:hindent_on_save = 1
 let g:hindent_line_length = 80
 let g:hindent_indent_size = 2
 
-let g:haskell_classic_highlighting = 0
+let g:tagbar_type_haskell = {
+    \ 'ctagsbin'  : 'hasktags',
+    \ 'ctagsargs' : '-x -c -o-',
+    \ 'kinds'     : [
+        \  'm:modules:0:1',
+        \  'd:data: 0:1',
+        \  'd_gadt: data gadt:0:1',
+        \  't:type names:0:1',
+        \  'nt:new types:0:1',
+        \  'c:classes:0:1',
+        \  'cons:constructors:1:1',
+        \  'c_gadt:constructor gadt:1:1',
+        \  'c_a:constructor accessors:1:1',
+        \  'ft:function types:1:1',
+        \  'fi:function implementations:0:1',
+        \  'o:others:0:1'
+    \ ],
+    \ 'sro'        : '.',
+    \ 'kind2scope' : {
+        \ 'm' : 'module',
+        \ 'c' : 'class',
+        \ 'd' : 'data',
+        \ 't' : 'type'
+    \ },
+    \ 'scope2kind' : {
+        \ 'module' : 'm',
+        \ 'class'  : 'c',
+        \ 'data'   : 'd',
+        \ 'type'   : 't'
+    \ }
+\ }
+
+let g:haskell_classic_highlighting = 1
 let g:haskell_disable_TH = 0
 let g:haskell_indent_disable = 0
 
