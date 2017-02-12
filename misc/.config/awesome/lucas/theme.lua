@@ -46,7 +46,7 @@ theme.widget_cpu        = confdir .. "/icons/vicious/cpu.png"
 theme.widget_mpd        = confdir .. "/icons/vicious/note.png"
 
 theme.layout_floating   = confdir .. "/icons/layouts/floating.png"
-theme.layout_uselesstile= confdir .. "/icons/layouts/tile.png"
+theme.layout_uselesstile     = confdir .. "/icons/layouts/tile.png"
 theme.layout_uselesstileleft = confdir .. "/icons/layouts/tileleft.png"
 
 theme.menu_submenu_icon = confdir .. "/icons/menu/sub_menu.png"

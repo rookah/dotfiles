@@ -1,7 +1,7 @@
 local tags      = {}
 local statusbar = {}
 local promptbox = {}
-local menu	= {}
+local menu	    = {}
 local taglist   = {}
 local tasklist  = {}
 local layoutbox = {}
@@ -15,8 +15,10 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local vicious = require("vicious")
 
--- local awesompd = require("awesompd/awesompd")
+local hotkeys_popup = require("awful.hotkeys_popup").widget
+
 local lain = require("lain")
+
 
 -- Makes sure that there's always a client that will have focus
 require("awful.autofocus")
@@ -35,11 +37,13 @@ end
 do
   local in_error = false
   awesome.connect_signal("debug::error", function (err)
+    -- Make sure we don't go into an endless error loop
     if in_error then return end
     in_error = true
+
     naughty.notify({ preset = naughty.config.presets.critical,
     title = "Oops, an error happened!",
-    text = err })
+    text = tostring(err) })
     in_error = false
   end)
 end
@@ -60,44 +64,25 @@ settings.dateformat = "%Y.%m.%d %H:%M:%S"
 settings.layouts =
 {
   awful.layout.suit.floating,
-  lain.layout.uselesstile,
+  lain.layout.uselesstile
 }
+
 -- }}}
 
 -- {{{ Wallpaper
-if beautiful.wallpaper then
-  for s = 1, screen.count() do
-    if s == 1 then
+local function set_wallpaper(s)
+  if beautiful.wallpaper then
+    if s.index == 1 then
       gears.wallpaper.maximized(beautiful.wallpaper, s, true)
     else 
       gears.wallpaper.maximized("/home/roukah/Pictures/Wallpapers/1467225965420_void2.png", s, true)
     end
   end
 end
--- }}}
 
--- {{{ Tags
-tags.settings = {
-  {
-    { name = "main", props = { layout = settings.layouts[1], mwfact = .686 } },
-    { name = "dev", props = { layout = settings.layouts[2], mwfact = .686 } },
-    { name = "media", props = { layout = settings.layouts[1], mwfact = .686 } },
-  },
-  {
-    { name = "www", props = { layout = settings.layouts[2], mwfact = .686 } },
-    { name = "doc", props = { layout = settings.layouts[2], mwfact = .686 } },
-  },
-}
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)
 
-for s = 1, screen.count() do
-  tags[s] = { }
-  for i, v in ipairs(tags.settings[s]) do
-    v.props.screen = s
-    tags[s][i] = awful.tag.add(v.name, v.props)
-  end
-  tags[s][1].selected = true
-end
--- }}}
 
 -- {{{ Menu
 mainmenu = awful.menu({
@@ -113,7 +98,57 @@ mainmenu = awful.menu({
 
 -- }}}
 
--- {{{ Widgets
+
+-- {{{ Wibar
+
+local function client_menu_toggle_fn()
+    local instance = nil
+    return function ()
+        if instance and instance.wibox.visible then
+            instance:hide()
+            instance = nil
+        else
+            instance = awful.menu.clients({ theme = { width = 250 } })
+        end
+    end
+end
+
+-- Create a wibox for each screen and add it
+local taglist_buttons = awful.util.table.join(
+awful.button({ }, 1, function(t) t:view_only() end),
+awful.button({ }, 3, awful.tag.viewtoggle),
+awful.button({ modkey }, 3, function(t)
+  if client.focus then
+    client.focus:toggle_tag(t)
+  end
+end),
+awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
+local tasklist_buttons = awful.util.table.join(
+awful.button({ }, 1, function (c)
+  if c == client.focus then
+    c.minimized = true
+  else
+    -- Without this, the following
+    -- :isvisible() makes no sense
+    c.minimized = false
+    if not c:isvisible() and c.first_tag then
+      c.first_tag:view_only()
+    end
+    -- This will also un-minimize
+    -- the client, if needed
+    client.focus = c
+    c:raise()
+  end
+end),
+awful.button({ }, 4, function ()
+  awful.client.focus.byidx(1)
+end),
+awful.button({ }, 5, function ()
+  awful.client.focus.byidx(-1)
+end))
+
 
 function make_fixed_textbox(w, a, t)
   local tb = wibox.widget.textbox()
@@ -158,127 +193,145 @@ vicious.register(netupwidget.tb, vicious.widgets.net, "${enp8s0 up_mb}mb/s ", 1)
 vicious.cache(vicious.widgets.net)
 vicious.register(clockwidget.tb, vicious.widgets.date, " " .. settings.dateformat, 1)
 
--- -- awesompd
--- mpd = awesompd:create({
---     scrolling = false,
---     max_width = 300,
---     path_to_icons = awful.util.getdir("config") .. "/awesompd/icons",
---     mpd_config = os.getenv("HOME") .. "/.config/mpd/mpd.conf",
---     rdecorator = "",
---     -- OSD config
---     osd = {
---         screen = screen:count(),
---         x = -10, -- 10px from right edge
---         y = settings.bar_height + 10,
---         bar_bg_color = beautiful.bg_focus,
---         bar_fg_color = "#a16a71", -- my icon color
---         alt_fg_color = "#a49c9c",
---     }
--- })
--- mpd:register_buttons({
---     { "", awesompd.MOUSE_LEFT, mpd:command_playpause() },
---     { "", awesompd.MOUSE_SCROLL_UP, mpd:command_volume_up() },
---     { "", awesompd.MOUSE_SCROLL_DOWN, mpd:command_volume_down() },
---     { "", awesompd.MOUSE_RIGHT, mpd:command_show_menu() }
--- })
--- 
--- mpdwidget = wibox.layout.margin(mpd.widget, 0, 0, -1, 0)
-
 systray = wibox.widget.systray()
 
-taglist.buttons = awful.util.table.join(
-awful.button({ }, 1, awful.tag.viewonly),
-awful.button({ }, 3, awful.tag.viewtoggle)
-)
 
-tasklist.buttons = awful.util.table.join(
-awful.button({ }, 1, function(c)
-  if c == client.focus then
-    c.minimized = true
-  else if not c:isvisible() then
-    awful.tag.viewonly(c:tags()[1])
-  end
-  client.focus = c
-  c:raise()
-end
-end),
-awful.button({ }, 2, function(c)
-  c:kill()
-end),
-awful.button({ }, 3, function()
-  if instance then
-    instance:hide()
-    instance = nil
+awful.screen.connect_for_each_screen(function(s)
+  -- Wallpaper
+  set_wallpaper(s)
+
+  -- Tags
+  if s.index == 1 then
+    awful.tag.add("main", {
+      layout                = settings.layouts[1],
+      master_fill_policy    = "expand",
+      gap_single_client     = true,
+      master_width_factor   = .686,
+      screen                = s,
+      selected              = true,
+    })
+    awful.tag.add("dev", {
+      layout                = settings.layouts[2],
+      master_fill_policy    = "expand",
+      gap_single_client     = true,
+      master_width_factor   = .686,
+      screen                = s,
+    })
+    awful.tag.add("media", {
+      layout                = settings.layouts[1],
+      master_fill_policy    = "expand",
+      gap_single_client     = true,
+      master_width_factor   = .686,
+      screen                = s,
+    })
   else
-    instance = awful.menu.clients({ theme = { width = 250 } })
+    awful.tag.add("www", {
+      layout                = settings.layouts[2],
+      master_fill_policy    = "expand",
+      gap_single_client     = true,
+      master_width_factor   = .686,
+      screen                = s,
+      selected              = true,
+    })
+    awful.tag.add("doc", {
+      layout                = settings.layouts[2],
+      master_fill_policy    = "expand",
+      gap_single_client     = true,
+      master_width_factor   = .686,
+      screen                = s,
+    })
   end
-end),
-awful.button({ }, 4, function()
-  awful.client.focus.byidx(1)
-  if client.focus then client.focus:raise() end
-end),
-awful.button({ }, 5, function()
-  awful.client.focus.byidx(-1)
-  if client.focus then client.focus:raise() end
+
+  -- Create a promptbox for each screen
+  s.promptbox = awful.widget.prompt()
+  -- Create an imagebox widget which will contains an icon indicating which layout we're using.
+  -- We need one layoutbox per screen.
+  s.layoutbox = awful.widget.layoutbox(s)
+  s.layoutbox:buttons(awful.util.table.join(
+  awful.button({ }, 1, function () awful.layout.inc( 1) end),
+  awful.button({ }, 3, function () awful.layout.inc(-1) end),
+  awful.button({ }, 4, function () awful.layout.inc( 1) end),
+  awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+
+  -- Create a taglist widget
+  -- To align tags names on the center, tb:set_align("center") in /usr/share/awesome/lib/awful/widget/common.lua
+  s.taglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+
+  -- Create a tasklist widget
+  s.tasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+
+  -- Create the wibox
+
+  if s.index == 1 then
+    s.wibox = awful.wibar(
+    {
+      position = "top",
+      height = settings.bar_height,
+      fg = beautiful.fg_normal,
+      bg = beautiful.bg_normal,
+      screen = s
+    })
+
+    -- Add widgets to the wibox
+    s.wibox:setup
+    {
+      layout = wibox.layout.align.horizontal,
+      { -- Left widgets
+      layout = wibox.layout.fixed.horizontal,
+      s.taglist,
+      s.layoutbox,
+      s.promptbox },
+      s.tasklist, -- Middle widget
+      { -- Right widgets
+      layout = wibox.layout.fixed.horizontal,
+      padding,
+      cpuicon,
+      cpuwidget,
+      tempicon,
+      cputempwidget,
+      separator,
+      memicon,
+      memwidget,
+      separator,
+      netdownicon,
+      netdownwidget,
+      netupwidget,
+      netupicon,
+      separator,
+      clockicon,
+      clockwidget,
+      separator,
+      systray},
+    }
+  else
+    s.wibox = awful.wibar(
+    {
+      position = "top",
+      height = settings.bar_height,
+      fg = beautiful.fg_normal,
+      bg = beautiful.bg_normal,
+      screen = s
+    })
+
+    -- Add widgets to the wibox
+    s.wibox:setup
+    {
+      layout = wibox.layout.align.horizontal,
+      { -- Left widgets
+      layout = wibox.layout.fixed.horizontal,
+      s.taglist,
+      s.layoutbox,
+      s.promptbox },
+      s.tasklist, -- Middle widget
+      { -- Right widgets
+      layout = wibox.layout.fixed.horizontal,
+    }
+  }
+  end
 end)
-)
-
-for s = 1, screen:count() do
-  --awful.screen.connect_for_each_screen(function(s)
-  promptbox[s] = awful.widget.prompt()
-  layoutbox[s] = awful.widget.layoutbox(s)
-  layoutbox[s]:buttons(awful.util.table.join(
-  awful.button({ }, 1, function() awful.layout.inc(settings.layouts, 1) end),
-  awful.button({ }, 3, function() awful.layout.inc(settings.layouts, -1) end)
-  ))
-  taglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist.buttons)
-  -- to align tags on the center, tb:set_align("center") in /usr/share/awesome/lib/awful/widget/common.lua
-  tasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist.buttons)
-
-  local left_layout  = wibox.layout.fixed.horizontal()
-  local right_layout = wibox.layout.fixed.horizontal()
-  statusbar[s] = awful.wibox(
-  {
-    position = "top",
-    height = settings.bar_height,
-    fg = beautiful.fg_normal,
-    bg = beautiful.bg_normal,
-    screen = s
-  })
-  left_layout:add(taglist[s])
-  left_layout:add(promptbox[s])
-  left_layout:add(layoutbox[s])
-  if s == 1 then
-    --  right_layout:add(padding)
-    --  right_layout:add(mpdicon)
-    --  right_layout:add(mpdwidget)
-    --  right_layout:add(separator)
-    right_layout:add(cpuicon)
-    right_layout:add(cpuwidget)
-    right_layout:add(tempicon)
-    right_layout:add(cputempwidget)
-    right_layout:add(separator)
-    right_layout:add(memicon)
-    right_layout:add(memwidget)
-    right_layout:add(separator)
-    right_layout:add(netdownicon)
-    right_layout:add(netdownwidget)
-    right_layout:add(netupwidget)
-    right_layout:add(netupicon)
-    right_layout:add(separator)
-    right_layout:add(clockicon)
-    right_layout:add(clockwidget)
-    right_layout:add(separator)
-    right_layout:add(systray)
-  end
-  local layout = wibox.layout.align.horizontal()
-  layout:set_left(left_layout)
-  layout:set_middle(tasklist[s])
-  layout:set_right(right_layout)
-  statusbar[s]:set_widget(layout)
-end
 
 -- }}}
+
 
 -- {{{ Mouse and Key Bindings
 
@@ -353,7 +406,7 @@ awful.key({ settings.modkey, }, "]", function ()
     awful.key({ settings.modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
-    awful.key({ settings.modkey },            "r",     function () promptbox[mouse.screen]:run() end),
+    awful.key({ settings.modkey },            "r",     function () awful.screen.focused().promptbox:run() end),
 
     awful.key({ settings.modkey }, "x",
     function ()
@@ -441,8 +494,10 @@ awful.key({ settings.modkey, }, "]", function ()
           border_color = beautiful.border_normal,
           focus = true,
           keys = clientkeys,
-          buttons = clientbuttons,
           size_hints_honor = false,
+          buttons = clientbuttons,
+          screen = awful.screen.preferred,
+          placement = awful.placement.no_overlap+awful.placement.no_offscreen
         } 
       },
       {
