@@ -2,6 +2,9 @@
     email = gisselairel@gmail.com
     name = rookah
 
+[core]
+    excludesfile = ~/.gitignore
+
 [credential]
     helper = cache --timeout=10000
 

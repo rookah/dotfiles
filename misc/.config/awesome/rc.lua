@@ -150,7 +150,7 @@ end
 padding       = wibox.widget.textbox()
 separator     = wibox.widget.textbox()
 cpuwidget     = make_fixed_textbox(28)
-cputempwidget = make_fixed_textbox(32)
+cputempwidget = make_fixed_textbox(22)
 memwidget     = make_fixed_textbox(40, "center")
 netdownwidget = make_fixed_textbox(42, "center")
 netupwidget   = make_fixed_textbox(42, "center")
@@ -390,15 +390,7 @@ awful.key({ settings.modkey, }, "]", function ()
     awful.key({ settings.modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
-    awful.key({ settings.modkey },            "r",     function () awful.screen.focused().promptbox:run() end),
-
-    awful.key({ settings.modkey }, "x",
-    function ()
-      awful.prompt.run({ prompt = "Run Lua code: " },
-      promptbox[mouse.screen].widget,
-      awful.util.eval, nil,
-      awful.util.getdir("cache") .. "/history_eval")
-    end)
+    awful.key({ settings.modkey },            "r",     function () awful.screen.focused().promptbox:run() end)
     )
 
     clientkeys = awful.util.table.join(
