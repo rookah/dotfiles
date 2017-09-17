@@ -51,6 +51,7 @@ visualizer_in_stereo = "yes"
 visualizer_output_name = "fifo"
 visualizer_type = "ellipse"
 visualizer_look = "⚫▮"
+visualizer_sync_interval = "10"
 
 # Playlist
 song_columns_list_format = "(50)[red]{t|f} (50)[magenta]{ar} (5f)[white]{lr}"

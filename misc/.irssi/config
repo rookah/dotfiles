@@ -153,7 +153,10 @@ settings = {
     lag_max_before_disconnect = "2min";
     skip_motd = "yes";
   };
-  "irc/dcc" = { dcc_download_path = "~/Downloads/Irssi"; };
+  "irc/dcc" = {
+    dcc_download_path = "~/Downloads/Irssi";
+    dcc_autoget = "yes";
+  };
   "fe-common/irc" = { whois_hide_safe_channel_id = "yes"; };
 };
 ignores = (

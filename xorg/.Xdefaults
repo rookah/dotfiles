@@ -10,10 +10,10 @@ Xcursor.theme:			Vanilla-DMZ
 Xcursor.size:			12
 
 
-urxvt*font:				xft:tewi2a:pixelsize=9:antialias=false,\
+urxvt*font:				xft:lucy tewi2a:pixelsize=9:antialias=false,\
                         xft:Kochi Gothic
 
-urxvt*boldFont:			xft:tewi2a:pixelsize=9:antialias=false,\
+urxvt*boldFont:			xft:lucy tewi2a:pixelsize=9:antialias=false,\
                         xft:Kochi Gothic
 
 URxvt.letterSpace:		0

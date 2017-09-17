@@ -5,7 +5,7 @@ confdir = awful.util.getdir("config") .. "/roukah"
 
 theme.wallpaper = "~/Pictures/Wallpapers/Wallpaper/1459173352989.png"
 
-theme.font		= "cure 8"
+theme.font		= "artwiz cure 8"
 
 theme.fg_normal = "#cccaca"
 theme.fg_focus  = "#e9e6e6"
