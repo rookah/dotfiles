@@ -14,6 +14,7 @@ local vicious = require("vicious")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 local lain = require("lain")
+local awesompd = require("awesompd/awesompd")
 
 
 -- Makes sure that there's always a client that will have focus
@@ -125,6 +126,9 @@ awful.button({ }, 1, function (c)
     c:raise()
   end
 end),
+awful.button({ }, 2, function (c)
+  c:kill()
+end),
 awful.button({ }, 4, function ()
   awful.client.focus.byidx(1)
 end),
@@ -175,6 +179,34 @@ vicious.register(netupwidget.tb, vicious.widgets.net, "${enp8s0 up_mb}mb/s ", 1)
 -- Need a cache since there are 2 of them
 vicious.cache(vicious.widgets.net)
 vicious.register(clockwidget.tb, vicious.widgets.date, " " .. settings.dateformat, 1)
+
+-- Awesompd
+mpd = awesompd:create({
+  servers = { { server = "gensokyo", port = 6600 } },
+  scrolling = false,
+  max_width = 300,
+  path_to_icons = awful.util.getdir("config") .. "/awesompd/icons",
+  mpd_config = os.getenv("HOME") .. "/.config/mpd/mpd.conf",
+  rdecorator = "",
+  -- OSD config
+  osd = {
+    screen = naughty.config.defaults.screen,
+    x = -10, -- 10px from right edge
+    y = settings.bar_height + 10,
+    bar_bg_color = beautiful.bg_focus,
+    bar_fg_color = "#a16a71", -- my icon color
+    alt_fg_color = "#a49c9c",
+  }
+})
+mpd:register_buttons({
+  { "", awesompd.MOUSE_LEFT, mpd:command_playpause() },
+  { "", awesompd.MOUSE_SCROLL_UP, mpd:command_volume_up() },
+  { "", awesompd.MOUSE_SCROLL_DOWN, mpd:command_volume_down() },
+  { "", awesompd.MOUSE_RIGHT, mpd:command_show_menu() }
+})
+
+mpdwidget = wibox.container.margin(mpd.widget, 0, 0, -1, 0)
+
 
 systray = wibox.widget.systray()
 
@@ -264,52 +296,55 @@ awful.screen.connect_for_each_screen(function(s)
       s.promptbox,
       s.layoutbox,
     },
-      s.tasklist, -- Middle widget
-      { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
-      padding,
-      cpuicon,
-      cpuwidget,
-      tempicon,
-      cputempwidget,
-      separator,
-      memicon,
-      memwidget,
-      separator,
-      netdownicon,
-      netdownwidget,
-      netupwidget,
-      netupicon,
-      separator,
-      clockicon,
-      clockwidget,
-      separator,
-      systray},
-    }
-  else
-    s.wibox = awful.wibar(
-    {
-      position = "top",
-      height = settings.bar_height,
-      fg = beautiful.fg_normal,
-      bg = beautiful.bg_normal,
-      screen = s
-    })
+    s.tasklist, -- Middle widget
+    { -- Right widgets
+    layout = wibox.layout.fixed.horizontal,
+    padding,
+    mpdicon,
+    mpdwidget,
+    separator,
+    cpuicon,
+    cpuwidget,
+    tempicon,
+    cputempwidget,
+    separator,
+    memicon,
+    memwidget,
+    separator,
+    netdownicon,
+    netdownwidget,
+    netupwidget,
+    netupicon,
+    separator,
+    clockicon,
+    clockwidget,
+    separator,
+    systray},
+  }
+else
+  s.wibox = awful.wibar(
+  {
+    position = "top",
+    height = settings.bar_height,
+    fg = beautiful.fg_normal,
+    bg = beautiful.bg_normal,
+    screen = s
+  })
 
-    -- Add widgets to the wibox
-    s.wibox:setup
-    {
-      layout = wibox.layout.align.horizontal,
-      { -- Left widgets
-      layout = wibox.layout.fixed.horizontal,
-      s.taglist,
-      s.promptbox,
-      s.layoutbox,
-    },
-      s.tasklist, -- Middle widget
-      { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
-    }
+  -- Add widgets to the wibox
+  s.wibox:setup
+  {
+    layout = wibox.layout.align.horizontal,
+    { -- Left widgets
+    layout = wibox.layout.fixed.horizontal,
+    s.taglist,
+    s.promptbox,
+    s.layoutbox,
+  },
+  s.tasklist, -- Middle widget
+  { -- Right widgets
+  layout = wibox.layout.fixed.horizontal,
+}
   }
 end
 end)
