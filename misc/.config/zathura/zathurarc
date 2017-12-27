@@ -14,7 +14,7 @@ map [index] k navigate_index down
 map <C-d> toggle_page_mode
 
 
-set font cure
+set font "artwiz cure"
 set selection-notification false
 
 set statusbar-home-tilde true
