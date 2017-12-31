@@ -13,14 +13,11 @@ local vicious = require("vicious")
 
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
-local lain = require("lain")
 local awesompd = require("awesompd/awesompd")
 
 
 -- Makes sure that there's always a client that will have focus
 require("awful.autofocus")
-
-awful.util.spawn_with_shell("ibus-daemon -drx")
 
 -- {{{ Error handling
 -- -- Startut
@@ -61,7 +58,7 @@ settings.dateformat = "%Y.%m.%d %H:%M:%S"
 settings.layouts =
 {
   awful.layout.suit.floating,
-  lain.layout.uselesstile
+  awful.layout.suit.tile
 }
 
 -- }}}
@@ -70,9 +67,10 @@ settings.layouts =
 local function set_wallpaper(s)
   if beautiful.wallpaper then
     if s.index == 1 then
+      --gears.wallpaper.maximized(beautiful.wallpaper, s, true)
       gears.wallpaper.maximized(beautiful.wallpaper, s, true)
     else 
-      gears.wallpaper.maximized("/home/roukah/Pictures/Wallpapers/1467225965420_void2.png", s, true)
+      gears.wallpaper.maximized(beautiful.void_wallpaper, s, true)
     end
   end
 end
@@ -194,8 +192,8 @@ mpd = awesompd:create({
     x = -10, -- 10px from right edge
     y = settings.bar_height + 10,
     bar_bg_color = beautiful.bg_focus,
-    bar_fg_color = "#a16a71", -- my icon color
-    alt_fg_color = "#a49c9c",
+    bar_fg_color = "#987186",
+    alt_fg_color = "#9c9898",
   }
 })
 mpd:register_buttons({
@@ -221,7 +219,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout                = settings.layouts[1],
       master_fill_policy    = "expand",
       gap_single_client     = true,
-      master_width_factor   = .686,
+      master_width_factor   = .6872,
       screen                = s,
       selected              = true,
     })
@@ -229,14 +227,14 @@ awful.screen.connect_for_each_screen(function(s)
       layout                = settings.layouts[2],
       master_fill_policy    = "expand",
       gap_single_client     = true,
-      master_width_factor   = .686,
+      master_width_factor   = .6872,
       screen                = s,
     })
     awful.tag.add("media", {
       layout                = settings.layouts[1],
       master_fill_policy    = "expand",
       gap_single_client     = true,
-      master_width_factor   = .686,
+      master_width_factor   = .6872,
       screen                = s,
     })
   else
@@ -244,7 +242,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout                = settings.layouts[2],
       master_fill_policy    = "expand",
       gap_single_client     = true,
-      master_width_factor   = .686,
+      master_width_factor   = .6872,
       screen                = s,
       selected              = true,
     })
@@ -252,7 +250,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout                = settings.layouts[2],
       master_fill_policy    = "expand",
       gap_single_client     = true,
-      master_width_factor   = .686,
+      master_width_factor   = .6872,
       screen                = s,
     })
   end
@@ -410,9 +408,9 @@ awful.key({ settings.modkey, }, "]", function ()
     awful.key({ settings.modkey, "Shift"   }, "q", awesome.quit),
 
     awful.key({ settings.modkey, "Mod1" }, "h",   function() awful.tag.incmwfact(-0.025)             end),
-    awful.key({ settings.modkey, "Mod1" }, "j",   function() awful.client.incwfact(-0.125)           end),
-    awful.key({ settings.modkey, "Mod1" }, "k",   function() awful.client.incwfact(0.125)            end),
-    awful.key({ settings.modkey,		   }, "'",   function() awful.client.setwfact(.6975)            end),
+    awful.key({ settings.modkey, "Mod1" }, "j",   function() awful.client.incwfact(0.125)           end),
+    awful.key({ settings.modkey, "Mod1" }, "k",   function() awful.client.incwfact(-0.125)            end),
+    awful.key({ settings.modkey,		   }, "'",   function() awful.client.setwfact(.682)            end),
     awful.key({ settings.modkey, "Mod1" }, "l",   function() awful.tag.incmwfact(.025)            end),
     awful.key({ settings.modkey, "Shift"   }, "h",   function() awful.client.swap.bydirection("left")  end),
     awful.key({ settings.modkey, "Shift"   }, "k",   function() awful.client.swap.bydirection("down")  end),
