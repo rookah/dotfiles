@@ -30,17 +30,17 @@ URxvt*internalBorder:	1
 
 URxvt*preeditType:      OverTheSpot
 URxvt*inputMethod:      fcitx
-URxvt*.foreground:      #eeeed5
-URxvt*.background:      #573355
+URxvt*.foreground:      #eeebdd
+URxvt*.background:      #5a3558
 URxvt*.cursorColor:     #c2c0c0
 
 !Black
-URxvt*.color0:          #282828
-URxvt*.color8:          #9c9898
+URxvt*.color0:          #40263f
+URxvt*.color8:          #746573
 
 !Red
-URxvt*.color1:          #9e6262
-URxvt*.color9:          #cf6a6d
+URxvt*.color1:          #a75c64
+URxvt*.color9:          #eb7784
 
 !Green
 URxvt*.color2:          #758763
@@ -51,11 +51,11 @@ URxvt*.color3:          #9d7f58
 URxvt*.color11:         #edc472
 
 !Blue
-URxvt*.color4:          #7586a4
-URxvt*.color12:         #94aad1
+URxvt*.color4:          #75569e
+URxvt*.color12:         #af7ec6
 
 !Magenta
-URxvt*.color5:          #bb749a
+URxvt*.color5:          #c27fa3
 URxvt*.color13:         #f6add4
 
 !Cyan
@@ -63,8 +63,11 @@ URxvt*.color6:          #6f979d
 URxvt*.color14:         #8ab4be
 
 !White
-URxvt*.color7:          #b5adad
-URxvt*.color15:         #e0dddd
+URxvt*.color7:          #c8c5c5
+URxvt*.color15:         #f3f1eb
+
+
+
 
 URxvt.perl-ext-common:  default,matcher
 URxvt.url-launcher:     firefox

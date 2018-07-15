@@ -8,10 +8,10 @@ theme.void_wallpaper = "~/Pictures/Wallpapers/Current/pink.png"
 
 theme.font		= "artwiz cure 8"
 
-theme.fg_normal = "#eeeed5"
-theme.fg_focus  = "#dddada"
+theme.fg_normal = "#eeebdd"
+theme.fg_focus  = "#f3f1eb"
 theme.fg_urgent = "#e0dddd"
-theme.bg_normal = "#573355"
+theme.bg_normal = "#5a3558"
 theme.bg_focus  = "#40263f"
 theme.bg_urgent = "#282828"
 
@@ -22,7 +22,7 @@ theme.border_marked = "#6f3332"
 
 theme.menu_height = 16
 theme.menu_border_width = 1
-theme.menu_border_color = "#282828"
+theme.menu_border_color = "#2a2a2a"
 
 theme.useless_gap = 8
 theme.tasklist_disable_icon = true

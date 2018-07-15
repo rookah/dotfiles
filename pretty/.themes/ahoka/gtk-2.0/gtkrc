@@ -25,6 +25,7 @@ gtk_color_scheme = "text_color:#e9e6e6\nselected_bg_color:#87353d\nselected_fg_c
 gtk_color_scheme = "tooltip_fg_color:#e9e6e6\ntooltip_bg_color:#222222\nlink_color:#cf7275"
 gtk_color_scheme = "menu_bg_color:#1b1b1b\nmenu_fg_color:#cccccc\nwidget_bg_color:#333333"
 
+
 gtk-icon-sizes = "panel-menu=24,24:panel=22,22:gtk-button=16,16:gtk-large-toolbar=16,16"
 
 gtk-auto-mnemonics = 1

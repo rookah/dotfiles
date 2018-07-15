@@ -159,7 +159,7 @@ netupwidget   = make_fixed_textbox(42, "center")
 clockwidget   = make_fixed_textbox(88, "center")
 
 padding:set_text(" ")
-separator:set_markup("<span color='#444'> | </span>")
+separator:set_markup("<span color='#c27fa3'> | </span>")
 
 mpdicon     = wibox.widget.imagebox(beautiful.widget_mpd)
 cpuicon     = wibox.widget.imagebox(beautiful.widget_cpu)
@@ -174,8 +174,7 @@ vicious.register(cputempwidget.tb, vicious.widgets.thermal, " $1°", 1, "thermal
 vicious.register(memwidget.tb, vicious.widgets.mem, " $2mb", 1)
 vicious.register(netdownwidget.tb, vicious.widgets.net, " ${enp8s0 down_mb}mb/s", 1)
 vicious.register(netupwidget.tb, vicious.widgets.net, "${enp8s0 up_mb}mb/s ", 1)
--- Need a cache since there are 2 of them
-vicious.cache(vicious.widgets.net)
+--vicious.cache(vicious.widgets.net)
 vicious.register(clockwidget.tb, vicious.widgets.date, " " .. settings.dateformat, 1)
 
 -- Awesompd
@@ -515,7 +514,6 @@ awful.key({ settings.modkey, }, "]", function ()
           class =
           {
             "feh",
-            "Gimp",
             "mpv",
             "Thunar",
             "Transmission",
@@ -523,7 +521,7 @@ awful.key({ settings.modkey, }, "]", function ()
         },
         properties = { floating = true }
       },
-      {
+      --[[ {
         rule_any =
         {
           class =
@@ -531,9 +529,8 @@ awful.key({ settings.modkey, }, "]", function ()
             "mpv",
           }
         },
-        properties = { screen = 1 }
-      },
-      { rule = { class = "Firefox" }, except = { instance = "Navigator" }, properties = { floating = true } },
+        properties = { screen = naughty.config.defaults.screen }
+      }, --]]
     }
     -- }}}
 

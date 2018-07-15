@@ -42,12 +42,16 @@ declare -U path
 #ENV
 export KEYTIMEOUT=1
 export HISTSIZE=1000
-export SAVEHIST=1000
+export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
 export TERM=rxvt-unicode
 
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 export LESS='-R '
+
+export LANG="en_US.UTF-8"
+#export LC_CTYPE="ja_JP.UTF-8"
+
 
 #Aliases
 alias ls='ls++'
