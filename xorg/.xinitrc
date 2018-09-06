@@ -11,7 +11,8 @@ export QT_QPA_PLATFORMTHEME=gtk2
 # Daemons
 compton &
 mpd
-dbus-launch --exit-with-session thunar --daemon &
+#dbus-launch --exit-with-session thunar --daemon &
+thunar --daemon &
 fcitx
 
 # Programs

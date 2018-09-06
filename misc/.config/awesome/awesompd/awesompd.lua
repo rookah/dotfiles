@@ -210,11 +210,11 @@ function awesompd:create(args)
 
     -- Widget configuration
     instance.widget:connect_signal("mouse::enter", function(c)
-        --instance:update_track()
+        instance:update_track()
         instance.osd.show()
     end)
     instance.widget:connect_signal("mouse::leave", function(c)
-        instance.osd.hide(2)
+        instance.osd.hide(3)
     end)
 
     instance:run()
@@ -351,17 +351,17 @@ function awesompd:create_osd(args)
     -- Show OSD for n seconds
     -- if n is nil then it's shown until hide is called
     function self.osd.show(n)
-        if self:playing_or_paused() and not (hovering and n) then
-            self.osd.update()
-            hovering = n == nil
-            if hide_timer and hide_timer.started then
-                hide_timer:stop()
-            end
-            self.osd.wb.visible = true
-            if n then
-                self.osd.hide(n)
-            end
-        end
+        --if self:playing_or_paused() and not (hovering and n) then
+        --    self.osd.update()
+        --    hovering = n == nil
+        --    if hide_timer and hide_timer.started then
+        --        hide_timer:stop()
+        --    end
+        --    self.osd.wb.visible = true
+        --    if n then
+        --        self.osd.hide(n)
+        --    end
+        --end
     end
 
     function self.osd.update()
@@ -684,7 +684,6 @@ function awesompd:menu_playback()
                                  self:command_next_track(), self.ICONS.NEXT })
             end
             table.insert(new_menu, { "Stop", self:command_stop(), self.ICONS.STOP })
-            table.insert(new_menu, { "", nil })
         end
         table.insert(new_menu, { "Clear playlist", self:command_clear_playlist() })
         self.recreate_playback = false
@@ -728,7 +727,6 @@ function awesompd:menu_playlists()
                 submenu[2] = { "Replace current", self:command_replace_playlist(self.playlists_array[i]) }
                 new_menu[i] = { self.playlists_array[i], submenu }
             end
-            table.insert(new_menu, { "", "" }) -- This is a separator
         end
         table.insert(new_menu, { "Refresh", function() self:check_playlists() end })
         self.recreate_playlists = false

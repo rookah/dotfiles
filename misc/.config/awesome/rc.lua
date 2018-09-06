@@ -197,9 +197,10 @@ mpd = awesompd:create({
 })
 mpd:register_buttons({
   { "", awesompd.MOUSE_LEFT, mpd:command_playpause() },
+  { "", awesompd.MOUSE_MIDDLE, mpd:command_stop() },
+  { "", awesompd.MOUSE_RIGHT, mpd:command_show_menu() },
   { "", awesompd.MOUSE_SCROLL_UP, mpd:command_volume_up() },
-  { "", awesompd.MOUSE_SCROLL_DOWN, mpd:command_volume_down() },
-  { "", awesompd.MOUSE_RIGHT, mpd:command_show_menu() }
+  { "", awesompd.MOUSE_SCROLL_DOWN, mpd:command_volume_down() }
 })
 
 mpdwidget = wibox.container.margin(mpd.widget, 0, 0, -1, 0)

@@ -14,7 +14,7 @@ map [index] k navigate_index down
 map <C-d> toggle_page_mode
 
 
-set font "artwiz cure"
+set font "Kochi Gothic 9"
 set selection-notification false
 
 set statusbar-home-tilde true
@@ -22,23 +22,23 @@ set window-title-basename true
 set window-title-page true
 
 
-set default-fg "#cccaca"
-set default-bg "#222222"
+set default-fg "#eeebdd"
+set default-bg "#5a3558"
 
-set statusbar-fg "#e9e6e6"
-set statusbar-bg "#1b1b1b"
-set inputbar-fg "#8f5b5b"
-set inputbar-bg "#1b1b1b"
+set statusbar-fg "#eeebdd"
+set statusbar-bg "#5a3558"
+set inputbar-fg "#eeebdd"
+set inputbar-bg "#5a3558"
 
-set index-fg "#cccaca"
-set index-bg "#222222"
-set index-active-fg "#e9e6e6"
-set index-active-bg "#8f5b5b"
+set index-fg "#eeebdd"
+set index-bg "#5a3558"
+set index-active-fg "#f3f1eb"
+set index-active-bg "#a75c64"
 
-set completion-fg "#cccaca"
-set completion-bg "#222222"
-set completion-group-fg "#cccaca"
-set completion-group-bg "#222222"
+set completion-fg "#eeebdd"
+set completion-bg "#5a3558"
+set completion-group-fg "#eeebdd"
+set completion-group-bg "#5a3558"
 set completion-highlight-fg "#e9e6e6"
 set completion-highlight-bg "#8f5b5b"
 
